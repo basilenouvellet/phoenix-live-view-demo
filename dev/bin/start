@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -Cue -o pipefail
+
+PROJECT_DIR="$(cd "$(dirname "$0")/../.." ; pwd)"
+DB_CONTAINER_NAME="phoenix_postgres"
+
+stop_db_container() {
+  docker stop "${DB_CONTAINER_NAME}"
+}
+
+start_db_container() {
+  stop_db_container || true
+
+  docker run                      \
+    --name "${DB_CONTAINER_NAME}" \
+    --rm                          \
+    -it                           \
+    -d                            \
+    -p "5432:5432"                \
+    postgres:11.2
+}
+
+start_db() {
+  start_db_container
+
+  sleep 3
+
+  mix ecto.setup
+}
+
+(
+  cd $PROJECT_DIR
+
+  echo "Starting PostgreSQL database in Docker..."
+  start_db
+
+  echo "Starting Phoenix dev server..."
+  iex -S mix phx.server
+)
