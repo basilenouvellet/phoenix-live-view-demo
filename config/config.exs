@@ -16,7 +16,10 @@ config :phoenix_live_view_demo, PhoenixLiveViewDemoWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "JABcesT5/LR/oQJ3JToCQA/pO8Y3QgS78VwXPSs2SQnQTX4otK+9fQ2TiZJrFkyo",
   render_errors: [view: PhoenixLiveViewDemoWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: PhoenixLiveViewDemo.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: PhoenixLiveViewDemo.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: "cH1BmJputcsrzw+v/usGU+czy3/XOMVA"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,

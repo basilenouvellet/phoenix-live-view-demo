@@ -61,7 +61,8 @@ config :phoenix_live_view_demo, PhoenixLiveViewDemoWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/phoenix_live_view_demo_web/{live,views}/.*(ex)$",
-      ~r"lib/phoenix_live_view_demo_web/templates/.*(eex)$"
+      ~r"lib/phoenix_live_view_demo_web/templates/.*(eex)$",
+      ~r{lib/phoenix_live_view_demo_web/live/.*(ex)$}
     ]
   ]
 
