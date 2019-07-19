@@ -1,6 +1,9 @@
 <section class="phx-hero">
   <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
   <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
+ 
+  <h1>Temperature Control</h1>
+  <%= Phoenix.LiveView.live_render(@conn, PhoenixLiveViewDemoWeb.ThermostatLive, session: %{user_id: @user_id}) %>
 </section>
 
 <section class="row">
