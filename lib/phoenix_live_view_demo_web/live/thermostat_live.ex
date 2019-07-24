@@ -4,7 +4,7 @@ defmodule PhoenixLiveViewDemoWeb.ThermostatLive do
   def render(assigns) do
     ~L"""
     <h3>Current temperature</h3>
-    <h1><b><%= @temperature %></b></h1>
+    <h1><b><%= @temperature %> °C</b></h1>
     <button phx-click="add" style="text-align: center; font-weight: bold; font-size: 1.2em;">+</button>
     <button phx-click="reduce" style="text-align: center; font-weight: bold; font-size: 1.2em;">-</button>
     """

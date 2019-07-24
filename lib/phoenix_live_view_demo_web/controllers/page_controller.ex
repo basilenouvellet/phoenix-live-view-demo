@@ -5,7 +5,7 @@ defmodule PhoenixLiveViewDemoWeb.PageController do
   def index(conn, _params) do
     temperature = 22
 
-    Logger.warn(temperature)
+    Logger.warn("Temperature is now #{temperature}")
 
     conn
       |> put_session(:temperature, temperature)
