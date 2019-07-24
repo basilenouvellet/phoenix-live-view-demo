@@ -5,6 +5,10 @@ set -Cue -o pipefail
 PROJECT_DIR="$(cd "$(dirname "$0")/../.." ; pwd)"
 DB_CONTAINER_NAME="phoenix_postgres"
 
+db_container_is_up() {
+  docker ps -a | grep "${DB_CONTAINER_NAME}"
+}
+
 stop_db_container() {
   docker stop "${DB_CONTAINER_NAME}"
 }
@@ -22,18 +26,16 @@ start_db_container() {
 }
 
 start_db() {
+  echo "Starting PostgreSQL database in Docker..."
   start_db_container
-
   sleep 3
-
   mix ecto.setup
 }
 
 (
   cd $PROJECT_DIR
 
-  echo "Starting PostgreSQL database in Docker..."
-  start_db
+  db_container_is_up || start_db
 
   echo "Starting Phoenix dev server..."
   iex -S mix phx.server
