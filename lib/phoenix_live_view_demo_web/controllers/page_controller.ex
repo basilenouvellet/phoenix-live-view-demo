@@ -1,14 +1,15 @@
 defmodule PhoenixLiveViewDemoWeb.PageController do
   use PhoenixLiveViewDemoWeb, :controller
+  require Logger
 
   def index(conn, _params) do
-    user_id = "1234"
+    temperature = 22
 
-    IO.inspect(user_id)
+    Logger.warn(temperature)
 
     conn
-      |> put_session(:user_id, user_id)
-      |> assign(:user_id, user_id)
+      |> put_session(:temperature, temperature)
+      |> assign(:temperature, temperature)
       |> render("index.html")
   end
 end
